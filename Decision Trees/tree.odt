@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="alcohol <= 10.95\ngini = 0.317\nsamples = 5197\nvalue = [4172, 1025]\nclass = good", fillcolor="#e58139c0"] ;
+1 [label="volatile acidity <= 0.213\ngini = 0.172\nsamples = 3458\nvalue = [3130, 328]\nclass = good", fillcolor="#e58139e4"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="density <= 0.998\ngini = 0.364\nsamples = 724\nvalue = [551, 173]\nclass = good", fillcolor="#e58139af"] ;
+1 -> 2 ;
+3 [label="gini = 0.315\nsamples = 602\nvalue = [484, 118]\nclass = good", fillcolor="#e58139c1"] ;
+2 -> 3 ;
+4 [label="gini = 0.495\nsamples = 122\nvalue = [67, 55]\nclass = good", fillcolor="#e581392e"] ;
+2 -> 4 ;
+5 [label="alcohol <= 10.35\ngini = 0.107\nsamples = 2734\nvalue = [2579, 155]\nclass = good", fillcolor="#e58139f0"] ;
+1 -> 5 ;
+6 [label="gini = 0.066\nsamples = 2149\nvalue = [2076, 73]\nclass = good", fillcolor="#e58139f6"] ;
+5 -> 6 ;
+7 [label="gini = 0.241\nsamples = 585\nvalue = [503, 82]\nclass = good", fillcolor="#e58139d5"] ;
+5 -> 7 ;
+8 [label="alcohol <= 11.875\ngini = 0.48\nsamples = 1739\nvalue = [1042, 697]\nclass = good", fillcolor="#e5813954"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="citric acid <= 0.275\ngini = 0.426\nsamples = 905\nvalue = [627, 278]\nclass = good", fillcolor="#e581398e"] ;
+8 -> 9 ;
+10 [label="gini = 0.278\nsamples = 228\nvalue = [190, 38]\nclass = good", fillcolor="#e58139cc"] ;
+9 -> 10 ;
+11 [label="gini = 0.458\nsamples = 677\nvalue = [437, 240]\nclass = good", fillcolor="#e5813973"] ;
+9 -> 11 ;
+12 [label="free sulfur dioxide <= 21.5\ngini = 0.5\nsamples = 834\nvalue = [415, 419]\nclass = bad", fillcolor="#399de502"] ;
+8 -> 12 ;
+13 [label="gini = 0.47\nsamples = 286\nvalue = [178, 108]\nclass = good", fillcolor="#e5813964"] ;
+12 -> 13 ;
+14 [label="gini = 0.491\nsamples = 548\nvalue = [237, 311]\nclass = bad", fillcolor="#399de53d"] ;
+12 -> 14 ;
+}

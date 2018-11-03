@@ -1,0 +1,1085 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Convolutional Neural Networks}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Lab 11}\label{lab-11}
+
+\section{Convolutional neural
+networks}\label{convolutional-neural-networks}
+
+\subsection{Submitted to: Prof. Sweetlin
+Hemlatha}\label{submitted-to-prof.-sweetlin-hemlatha}
+
+\subsection{Submitted by: Prateek Singh
+(15BCE1091)}\label{submitted-by-prateek-singh-15bce1091}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{\PYZus{}\PYZus{}future\PYZus{}\PYZus{}} \PY{k}{import} \PY{n}{print\PYZus{}function}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{tensorflow} \PY{k}{as} \PY{n+nn}{tf}
+        \PY{k+kn}{from} \PY{n+nn}{six}\PY{n+nn}{.}\PY{n+nn}{moves} \PY{k}{import} \PY{n}{cPickle} \PY{k}{as} \PY{n}{pickle}
+        \PY{k+kn}{from} \PY{n+nn}{six}\PY{n+nn}{.}\PY{n+nn}{moves} \PY{k}{import} \PY{n+nb}{range}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://commondatastorage.googleapis.com/books1000/}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{last\PYZus{}percent\PYZus{}reported} \PY{o}{=} \PY{k+kc}{None}
+        \PY{n}{data\PYZus{}root} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Change me to store data elsewhere}
+        
+        \PY{k}{def} \PY{n+nf}{download\PYZus{}progress\PYZus{}hook}\PY{p}{(}\PY{n}{count}\PY{p}{,} \PY{n}{blockSize}\PY{p}{,} \PY{n}{totalSize}\PY{p}{)}\PY{p}{:}
+          \PY{k}{global} \PY{n}{last\PYZus{}percent\PYZus{}reported}
+          \PY{n}{percent} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{count} \PY{o}{*} \PY{n}{blockSize} \PY{o}{*} \PY{l+m+mi}{100} \PY{o}{/} \PY{n}{totalSize}\PY{p}{)}
+        
+          \PY{k}{if} \PY{n}{last\PYZus{}percent\PYZus{}reported} \PY{o}{!=} \PY{n}{percent}\PY{p}{:}
+            \PY{k}{if} \PY{n}{percent} \PY{o}{\PYZpc{}} \PY{l+m+mi}{5} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+              \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{percent}\PY{p}{)}
+              \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{flush}\PY{p}{(}\PY{p}{)}
+            \PY{k}{else}\PY{p}{:}
+              \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{flush}\PY{p}{(}\PY{p}{)}
+              
+            \PY{n}{last\PYZus{}percent\PYZus{}reported} \PY{o}{=} \PY{n}{percent}
+                
+        \PY{k}{def} \PY{n+nf}{maybe\PYZus{}download}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{n}{expected\PYZus{}bytes}\PY{p}{,} \PY{n}{force}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+          \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Download a file if not present, and make sure it\PYZsq{}s the right size.\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{dest\PYZus{}filename} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{data\PYZus{}root}\PY{p}{,} \PY{n}{filename}\PY{p}{)}
+          \PY{k}{if} \PY{n}{force} \PY{o+ow}{or} \PY{o+ow}{not} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{exists}\PY{p}{(}\PY{n}{dest\PYZus{}filename}\PY{p}{)}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Attempting to download:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{filename}\PY{p}{)} 
+            \PY{n}{filename}\PY{p}{,} \PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{urlretrieve}\PY{p}{(}\PY{n}{url} \PY{o}{+} \PY{n}{filename}\PY{p}{,} \PY{n}{dest\PYZus{}filename}\PY{p}{,} \PY{n}{reporthook}\PY{o}{=}\PY{n}{download\PYZus{}progress\PYZus{}hook}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Download Complete!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{statinfo} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{stat}\PY{p}{(}\PY{n}{dest\PYZus{}filename}\PY{p}{)}
+          \PY{k}{if} \PY{n}{statinfo}\PY{o}{.}\PY{n}{st\PYZus{}size} \PY{o}{==} \PY{n}{expected\PYZus{}bytes}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Found and verified}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dest\PYZus{}filename}\PY{p}{)}
+          \PY{k}{else}\PY{p}{:}
+            \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Failed to verify }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{dest\PYZus{}filename} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{. Can you get to it with a browser?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{k}{return} \PY{n}{dest\PYZus{}filename}
+        
+        \PY{n}{train\PYZus{}filename} \PY{o}{=} \PY{n}{maybe\PYZus{}download}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{notMNIST\PYZus{}large.tar.gz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{247336696}\PY{p}{)}
+        \PY{n}{test\PYZus{}filename} \PY{o}{=} \PY{n}{maybe\PYZus{}download}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{notMNIST\PYZus{}small.tar.gz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{8458043}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Found and verified ./notMNIST\_large.tar.gz
+Found and verified ./notMNIST\_small.tar.gz
+
+    \end{Verbatim}
+
+    Extract the dataset from the compressed .tar.gz file. This would give us
+a set of directories, labeled A through J.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{num\PYZus{}classes} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{133}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{maybe\PYZus{}extract}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{n}{force}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+          \PY{n}{root} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{splitext}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{splitext}\PY{p}{(}\PY{n}{filename}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}  \PY{c+c1}{\PYZsh{} remove .tar.gz}
+          \PY{k}{if} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{isdir}\PY{p}{(}\PY{n}{root}\PY{p}{)} \PY{o+ow}{and} \PY{o+ow}{not} \PY{n}{force}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} You may override by setting force=True.}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ already present \PYZhy{} Skipping extraction of }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{root}\PY{p}{,} \PY{n}{filename}\PY{p}{)}\PY{p}{)}
+          \PY{k}{else}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Extracting data for }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{. This may take a while. Please wait.}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{root}\PY{p}{)}
+            \PY{n}{tar} \PY{o}{=} \PY{n}{tarfile}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+            \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{flush}\PY{p}{(}\PY{p}{)}
+            \PY{n}{tar}\PY{o}{.}\PY{n}{extractall}\PY{p}{(}\PY{n}{data\PYZus{}root}\PY{p}{)}
+            \PY{n}{tar}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+          \PY{n}{data\PYZus{}folders} \PY{o}{=} \PY{p}{[}
+            \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{root}\PY{p}{,} \PY{n}{d}\PY{p}{)} \PY{k}{for} \PY{n}{d} \PY{o+ow}{in} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{root}\PY{p}{)}\PY{p}{)}
+            \PY{k}{if} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{isdir}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{root}\PY{p}{,} \PY{n}{d}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+          \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}folders}\PY{p}{)} \PY{o}{!=} \PY{n}{num\PYZus{}classes}\PY{p}{:}
+            \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Expected }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ folders, one per class. Found }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ instead.}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}
+                \PY{n}{num\PYZus{}classes}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}folders}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{data\PYZus{}folders}\PY{p}{)}
+          \PY{k}{return} \PY{n}{data\PYZus{}folders}
+          
+        \PY{n}{train\PYZus{}folders} \PY{o}{=} \PY{n}{maybe\PYZus{}extract}\PY{p}{(}\PY{n}{train\PYZus{}filename}\PY{p}{)}
+        \PY{n}{test\PYZus{}folders} \PY{o}{=} \PY{n}{maybe\PYZus{}extract}\PY{p}{(}\PY{n}{test\PYZus{}filename}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+./notMNIST\_large already present - Skipping extraction of ./notMNIST\_large.tar.gz.
+['./notMNIST\_large/A', './notMNIST\_large/B', './notMNIST\_large/C', './notMNIST\_large/D', './notMNIST\_large/E', './notMNIST\_large/F', './notMNIST\_large/G', './notMNIST\_large/H', './notMNIST\_large/I', './notMNIST\_large/J']
+./notMNIST\_small already present - Skipping extraction of ./notMNIST\_small.tar.gz.
+['./notMNIST\_small/A', './notMNIST\_small/B', './notMNIST\_small/C', './notMNIST\_small/D', './notMNIST\_small/E', './notMNIST\_small/F', './notMNIST\_small/G', './notMNIST\_small/H', './notMNIST\_small/I', './notMNIST\_small/J']
+
+    \end{Verbatim}
+
+    Looking at the dataset to ensure it's is sensible
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{for} \PY{n}{folders} \PY{o+ow}{in} \PY{n}{train\PYZus{}folders}\PY{p}{:}
+            \PY{n}{a} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{folders}\PY{p}{)}
+            \PY{n}{display}\PY{p}{(}\PY{n}{Image}\PY{p}{(}\PY{n}{filename} \PY{o}{=} \PY{n}{folders} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_8.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_9.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Loading the data in a more manageable format
+
+We'll convert the entire dataset into a 3D array (image index, x, y) of
+floating point values, normalized to have approximately zero mean and
+standard deviation \textasciitilde{}0.5 to make training easier down the
+road.
+
+A few images might not be readable, we'll just skip them.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{image\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{28}  \PY{c+c1}{\PYZsh{} Pixel width and height.}
+        \PY{n}{pixel\PYZus{}depth} \PY{o}{=} \PY{l+m+mf}{255.0}  \PY{c+c1}{\PYZsh{} Number of levels per pixel.}
+        
+        \PY{k}{def} \PY{n+nf}{load\PYZus{}letter}\PY{p}{(}\PY{n}{folder}\PY{p}{,} \PY{n}{min\PYZus{}num\PYZus{}images}\PY{p}{)}\PY{p}{:}
+          \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Load the data for a single letter label.\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{image\PYZus{}files} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{folder}\PY{p}{)}
+          \PY{n}{dataset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ndarray}\PY{p}{(}\PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{image\PYZus{}files}\PY{p}{)}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{)}\PY{p}{,}
+                                 \PY{n}{dtype}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{float32}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{folder}\PY{p}{)}
+          \PY{n}{num\PYZus{}images} \PY{o}{=} \PY{l+m+mi}{0}
+          \PY{k}{for} \PY{n}{image} \PY{o+ow}{in} \PY{n}{image\PYZus{}files}\PY{p}{:}
+            \PY{n}{image\PYZus{}file} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{folder}\PY{p}{,} \PY{n}{image}\PY{p}{)}
+            \PY{k}{try}\PY{p}{:}
+              \PY{n}{image\PYZus{}data} \PY{o}{=} \PY{p}{(}\PY{n}{imageio}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{n}{image\PYZus{}file}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                            \PY{n}{pixel\PYZus{}depth} \PY{o}{/} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{n}{pixel\PYZus{}depth}
+              \PY{k}{if} \PY{n}{image\PYZus{}data}\PY{o}{.}\PY{n}{shape} \PY{o}{!=} \PY{p}{(}\PY{n}{image\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{)}\PY{p}{:}
+                \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unexpected image shape: }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n+nb}{str}\PY{p}{(}\PY{n}{image\PYZus{}data}\PY{o}{.}\PY{n}{shape}\PY{p}{)}\PY{p}{)}
+              \PY{n}{dataset}\PY{p}{[}\PY{n}{num\PYZus{}images}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{image\PYZus{}data}
+              \PY{n}{num\PYZus{}images} \PY{o}{=} \PY{n}{num\PYZus{}images} \PY{o}{+} \PY{l+m+mi}{1}
+            \PY{k}{except} \PY{p}{(}\PY{n+ne}{IOError}\PY{p}{,} \PY{n+ne}{ValueError}\PY{p}{)} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Could not read:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{image\PYZus{}file}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{e}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{} it}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{s ok, skipping.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+          \PY{n}{dataset} \PY{o}{=} \PY{n}{dataset}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{num\PYZus{}images}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+          \PY{k}{if} \PY{n}{num\PYZus{}images} \PY{o}{\PYZlt{}} \PY{n}{min\PYZus{}num\PYZus{}images}\PY{p}{:}
+            \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Many fewer images than expected: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ \PYZlt{} }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}
+                            \PY{p}{(}\PY{n}{num\PYZus{}images}\PY{p}{,} \PY{n}{min\PYZus{}num\PYZus{}images}\PY{p}{)}\PY{p}{)}
+            
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Full dataset tensor:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{dataset}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Standard deviation:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{dataset}\PY{p}{)}\PY{p}{)}
+          \PY{k}{return} \PY{n}{dataset}
+                
+        \PY{k}{def} \PY{n+nf}{maybe\PYZus{}pickle}\PY{p}{(}\PY{n}{data\PYZus{}folders}\PY{p}{,} \PY{n}{min\PYZus{}num\PYZus{}images\PYZus{}per\PYZus{}class}\PY{p}{,} \PY{n}{force}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+          \PY{n}{dataset\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{folder} \PY{o+ow}{in} \PY{n}{data\PYZus{}folders}\PY{p}{:}
+            \PY{n}{set\PYZus{}filename} \PY{o}{=} \PY{n}{folder} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.pickle}\PY{l+s+s1}{\PYZsq{}}
+            \PY{n}{dataset\PYZus{}names}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{set\PYZus{}filename}\PY{p}{)}
+            \PY{k}{if} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{exists}\PY{p}{(}\PY{n}{set\PYZus{}filename}\PY{p}{)} \PY{o+ow}{and} \PY{o+ow}{not} \PY{n}{force}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} You may override by setting force=True.}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ already present \PYZhy{} Skipping pickling.}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{set\PYZus{}filename}\PY{p}{)}
+            \PY{k}{else}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pickling }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{set\PYZus{}filename}\PY{p}{)}
+              \PY{n}{dataset} \PY{o}{=} \PY{n}{load\PYZus{}letter}\PY{p}{(}\PY{n}{folder}\PY{p}{,} \PY{n}{min\PYZus{}num\PYZus{}images\PYZus{}per\PYZus{}class}\PY{p}{)}
+              \PY{k}{try}\PY{p}{:}
+                \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{set\PYZus{}filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+                  \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{dataset}\PY{p}{,} \PY{n}{f}\PY{p}{,} \PY{n}{pickle}\PY{o}{.}\PY{n}{HIGHEST\PYZus{}PROTOCOL}\PY{p}{)}
+              \PY{k}{except} \PY{n+ne}{Exception} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unable to save data to}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{set\PYZus{}filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{e}\PY{p}{)}
+          
+          \PY{k}{return} \PY{n}{dataset\PYZus{}names}
+        
+        \PY{n}{train\PYZus{}datasets} \PY{o}{=} \PY{n}{maybe\PYZus{}pickle}\PY{p}{(}\PY{n}{train\PYZus{}folders}\PY{p}{,} \PY{l+m+mi}{45000}\PY{p}{)}
+        \PY{n}{test\PYZus{}datasets} \PY{o}{=} \PY{n}{maybe\PYZus{}pickle}\PY{p}{(}\PY{n}{test\PYZus{}folders}\PY{p}{,} \PY{l+m+mi}{1800}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+./notMNIST\_large/A.pickle already present - Skipping pickling.
+./notMNIST\_large/B.pickle already present - Skipping pickling.
+./notMNIST\_large/C.pickle already present - Skipping pickling.
+./notMNIST\_large/D.pickle already present - Skipping pickling.
+./notMNIST\_large/E.pickle already present - Skipping pickling.
+./notMNIST\_large/F.pickle already present - Skipping pickling.
+./notMNIST\_large/G.pickle already present - Skipping pickling.
+./notMNIST\_large/H.pickle already present - Skipping pickling.
+./notMNIST\_large/I.pickle already present - Skipping pickling.
+./notMNIST\_large/J.pickle already present - Skipping pickling.
+./notMNIST\_small/A.pickle already present - Skipping pickling.
+./notMNIST\_small/B.pickle already present - Skipping pickling.
+./notMNIST\_small/C.pickle already present - Skipping pickling.
+./notMNIST\_small/D.pickle already present - Skipping pickling.
+./notMNIST\_small/E.pickle already present - Skipping pickling.
+./notMNIST\_small/F.pickle already present - Skipping pickling.
+./notMNIST\_small/G.pickle already present - Skipping pickling.
+./notMNIST\_small/H.pickle already present - Skipping pickling.
+./notMNIST\_small/I.pickle already present - Skipping pickling.
+./notMNIST\_small/J.pickle already present - Skipping pickling.
+
+    \end{Verbatim}
+
+    Verifying that the data still looks good. Displaying a sample of the
+labels and images from the ndarray.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k+kn}{import} \PY{n+nn}{random}
+        \PY{k}{def} \PY{n+nf}{disp\PYZus{}8\PYZus{}img}\PY{p}{(}\PY{n}{imgs}\PY{p}{,} \PY{n}{titles}\PY{p}{)}\PY{p}{:}
+          \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Display subplot with 8 images or less\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{img} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{imgs}\PY{p}{)}\PY{p}{:}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{titles}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{off}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{disp\PYZus{}sample\PYZus{}pickles}\PY{p}{(}\PY{n}{data\PYZus{}folders}\PY{p}{)}\PY{p}{:}
+          \PY{n}{folder} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{data\PYZus{}folders}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{pickle\PYZus{}filename} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{folder}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.pickle}\PY{l+s+s1}{\PYZsq{}}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{folder}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{data\PYZus{}folders}\PY{p}{)}
+          \PY{k}{try}\PY{p}{:}
+            \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{pickle\PYZus{}filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+              \PY{n}{dataset} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+          \PY{k}{except} \PY{n+ne}{Exception} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unable to read data from}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{pickle\PYZus{}filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{e}\PY{p}{)}
+            \PY{k}{return}
+          \PY{c+c1}{\PYZsh{} display}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{folder}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{img} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{dataset}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{off}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img}\PY{p}{)}
+            
+        \PY{n}{disp\PYZus{}sample\PYZus{}pickles}\PY{p}{(}\PY{n}{train\PYZus{}folders}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['./notMNIST\_large/J']
+['./notMNIST\_large/A', './notMNIST\_large/B', './notMNIST\_large/C', './notMNIST\_large/D', './notMNIST\_large/E', './notMNIST\_large/F', './notMNIST\_large/G', './notMNIST\_large/H', './notMNIST\_large/I', './notMNIST\_large/J']
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    checking for the data to be balanced across classes.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{def} \PY{n+nf}{disp\PYZus{}number\PYZus{}images}\PY{p}{(}\PY{n}{data\PYZus{}folders}\PY{p}{)}\PY{p}{:}
+          \PY{k}{for} \PY{n}{folder} \PY{o+ow}{in} \PY{n}{data\PYZus{}folders}\PY{p}{:}
+            \PY{n}{pickle\PYZus{}filename} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{folder}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.pickle}\PY{l+s+s1}{\PYZsq{}}
+            \PY{k}{try}\PY{p}{:}
+              \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{pickle\PYZus{}filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+                \PY{n}{dataset} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+            \PY{k}{except} \PY{n+ne}{Exception} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unable to read data from}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{pickle\PYZus{}filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{e}\PY{p}{)}
+              \PY{k}{return}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of images in }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{folder}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ : }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{dataset}\PY{p}{)}\PY{p}{)}
+            
+        \PY{n}{disp\PYZus{}number\PYZus{}images}\PY{p}{(}\PY{n}{train\PYZus{}folders}\PY{p}{)}
+        \PY{n}{disp\PYZus{}number\PYZus{}images}\PY{p}{(}\PY{n}{test\PYZus{}folders}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Number of images in  ./notMNIST\_large/A  :  52909
+Number of images in  ./notMNIST\_large/B  :  52911
+Number of images in  ./notMNIST\_large/C  :  52912
+Number of images in  ./notMNIST\_large/D  :  52911
+Number of images in  ./notMNIST\_large/E  :  52912
+Number of images in  ./notMNIST\_large/F  :  52912
+Number of images in  ./notMNIST\_large/G  :  52912
+Number of images in  ./notMNIST\_large/H  :  52912
+Number of images in  ./notMNIST\_large/I  :  52912
+Number of images in  ./notMNIST\_large/J  :  52911
+Number of images in  ./notMNIST\_small/A  :  1872
+Number of images in  ./notMNIST\_small/B  :  1873
+Number of images in  ./notMNIST\_small/C  :  1873
+Number of images in  ./notMNIST\_small/D  :  1873
+Number of images in  ./notMNIST\_small/E  :  1873
+Number of images in  ./notMNIST\_small/F  :  1872
+Number of images in  ./notMNIST\_small/G  :  1872
+Number of images in  ./notMNIST\_small/H  :  1872
+Number of images in  ./notMNIST\_small/I  :  1872
+Number of images in  ./notMNIST\_small/J  :  1872
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{def} \PY{n+nf}{make\PYZus{}arrays}\PY{p}{(}\PY{n}{nb\PYZus{}rows}\PY{p}{,} \PY{n}{img\PYZus{}size}\PY{p}{)}\PY{p}{:}
+          \PY{k}{if} \PY{n}{nb\PYZus{}rows}\PY{p}{:}
+            \PY{n}{dataset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ndarray}\PY{p}{(}\PY{p}{(}\PY{n}{nb\PYZus{}rows}\PY{p}{,} \PY{n}{img\PYZus{}size}\PY{p}{,} \PY{n}{img\PYZus{}size}\PY{p}{)}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{float32}\PY{p}{)}
+            \PY{n}{labels} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ndarray}\PY{p}{(}\PY{n}{nb\PYZus{}rows}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{int32}\PY{p}{)}
+          \PY{k}{else}\PY{p}{:}
+            \PY{n}{dataset}\PY{p}{,} \PY{n}{labels} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{k+kc}{None}
+          \PY{k}{return} \PY{n}{dataset}\PY{p}{,} \PY{n}{labels}
+        
+        \PY{k}{def} \PY{n+nf}{merge\PYZus{}datasets}\PY{p}{(}\PY{n}{pickle\PYZus{}files}\PY{p}{,} \PY{n}{train\PYZus{}size}\PY{p}{,} \PY{n}{valid\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+          \PY{n}{num\PYZus{}classes} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{pickle\PYZus{}files}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{pickle\PYZus{}files}\PY{p}{)}
+          \PY{n}{valid\PYZus{}dataset}\PY{p}{,} \PY{n}{valid\PYZus{}labels} \PY{o}{=} \PY{n}{make\PYZus{}arrays}\PY{p}{(}\PY{n}{valid\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{)}
+          \PY{n}{train\PYZus{}dataset}\PY{p}{,} \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{make\PYZus{}arrays}\PY{p}{(}\PY{n}{train\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{)}
+          \PY{n}{vsize\PYZus{}per\PYZus{}class} \PY{o}{=} \PY{n}{valid\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{n}{num\PYZus{}classes}
+          \PY{n}{tsize\PYZus{}per\PYZus{}class} \PY{o}{=} \PY{n}{train\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{n}{num\PYZus{}classes}
+            
+          \PY{n}{start\PYZus{}v}\PY{p}{,} \PY{n}{start\PYZus{}t} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}
+          \PY{n}{end\PYZus{}v}\PY{p}{,} \PY{n}{end\PYZus{}t} \PY{o}{=} \PY{n}{vsize\PYZus{}per\PYZus{}class}\PY{p}{,} \PY{n}{tsize\PYZus{}per\PYZus{}class}
+          \PY{n}{end\PYZus{}l} \PY{o}{=} \PY{n}{vsize\PYZus{}per\PYZus{}class}\PY{o}{+}\PY{n}{tsize\PYZus{}per\PYZus{}class}
+          \PY{k}{for} \PY{n}{label}\PY{p}{,} \PY{n}{pickle\PYZus{}file} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{pickle\PYZus{}files}\PY{p}{)}\PY{p}{:}   
+            \PY{k}{try}\PY{p}{:}
+              \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{pickle\PYZus{}file}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+                \PY{n}{letter\PYZus{}set} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{} let\PYZsq{}s shuffle the letters to have random validation and training set}
+                \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{shuffle}\PY{p}{(}\PY{n}{letter\PYZus{}set}\PY{p}{)}
+                \PY{k}{if} \PY{n}{valid\PYZus{}dataset} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+                  \PY{n}{valid\PYZus{}letter} \PY{o}{=} \PY{n}{letter\PYZus{}set}\PY{p}{[}\PY{p}{:}\PY{n}{vsize\PYZus{}per\PYZus{}class}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                  \PY{n}{valid\PYZus{}dataset}\PY{p}{[}\PY{n}{start\PYZus{}v}\PY{p}{:}\PY{n}{end\PYZus{}v}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{valid\PYZus{}letter}
+                  \PY{n}{valid\PYZus{}labels}\PY{p}{[}\PY{n}{start\PYZus{}v}\PY{p}{:}\PY{n}{end\PYZus{}v}\PY{p}{]} \PY{o}{=} \PY{n}{label}
+                  \PY{n}{start\PYZus{}v} \PY{o}{+}\PY{o}{=} \PY{n}{vsize\PYZus{}per\PYZus{}class}
+                  \PY{n}{end\PYZus{}v} \PY{o}{+}\PY{o}{=} \PY{n}{vsize\PYZus{}per\PYZus{}class}
+                            
+                \PY{n}{train\PYZus{}letter} \PY{o}{=} \PY{n}{letter\PYZus{}set}\PY{p}{[}\PY{n}{vsize\PYZus{}per\PYZus{}class}\PY{p}{:}\PY{n}{end\PYZus{}l}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                \PY{n}{train\PYZus{}dataset}\PY{p}{[}\PY{n}{start\PYZus{}t}\PY{p}{:}\PY{n}{end\PYZus{}t}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{train\PYZus{}letter}
+                \PY{n}{train\PYZus{}labels}\PY{p}{[}\PY{n}{start\PYZus{}t}\PY{p}{:}\PY{n}{end\PYZus{}t}\PY{p}{]} \PY{o}{=} \PY{n}{label}
+                \PY{n}{start\PYZus{}t} \PY{o}{+}\PY{o}{=} \PY{n}{tsize\PYZus{}per\PYZus{}class}
+                \PY{n}{end\PYZus{}t} \PY{o}{+}\PY{o}{=} \PY{n}{tsize\PYZus{}per\PYZus{}class}
+            \PY{k}{except} \PY{n+ne}{Exception} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unable to process data from}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{pickle\PYZus{}file}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{e}\PY{p}{)}
+              \PY{k}{raise}
+            
+          \PY{k}{return} \PY{n}{valid\PYZus{}dataset}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{p}{,} \PY{n}{train\PYZus{}dataset}\PY{p}{,} \PY{n}{train\PYZus{}labels}
+                    
+                    
+        \PY{n}{train\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{200000}
+        \PY{n}{valid\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{10000}
+        \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{10000}
+        
+        \PY{n}{valid\PYZus{}dataset}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{p}{,} \PY{n}{train\PYZus{}dataset}\PY{p}{,} \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{merge\PYZus{}datasets}\PY{p}{(}
+          \PY{n}{train\PYZus{}datasets}\PY{p}{,} \PY{n}{train\PYZus{}size}\PY{p}{,} \PY{n}{valid\PYZus{}size}\PY{p}{)}
+        \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{test\PYZus{}dataset}\PY{p}{,} \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{merge\PYZus{}datasets}\PY{p}{(}\PY{n}{test\PYZus{}datasets}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{train\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Validation:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{valid\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Testing:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{test\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['./notMNIST\_large/A.pickle', './notMNIST\_large/B.pickle', './notMNIST\_large/C.pickle', './notMNIST\_large/D.pickle', './notMNIST\_large/E.pickle', './notMNIST\_large/F.pickle', './notMNIST\_large/G.pickle', './notMNIST\_large/H.pickle', './notMNIST\_large/I.pickle', './notMNIST\_large/J.pickle']
+['./notMNIST\_small/A.pickle', './notMNIST\_small/B.pickle', './notMNIST\_small/C.pickle', './notMNIST\_small/D.pickle', './notMNIST\_small/E.pickle', './notMNIST\_small/F.pickle', './notMNIST\_small/G.pickle', './notMNIST\_small/H.pickle', './notMNIST\_small/I.pickle', './notMNIST\_small/J.pickle']
+Training: (200000, 28, 28) (200000,)
+Validation: (10000, 28, 28) (10000,)
+Testing: (10000, 28, 28) (10000,)
+
+    \end{Verbatim}
+
+    Next, we'll randomize the data. It's important to have the labels well
+shuffled for the training and test distributions to match.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{def} \PY{n+nf}{randomize}\PY{p}{(}\PY{n}{dataset}\PY{p}{,} \PY{n}{labels}\PY{p}{)}\PY{p}{:}
+          \PY{n}{permutation} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{permutation}\PY{p}{(}\PY{n}{labels}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          \PY{n}{shuffled\PYZus{}dataset} \PY{o}{=} \PY{n}{dataset}\PY{p}{[}\PY{n}{permutation}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+          \PY{n}{shuffled\PYZus{}labels} \PY{o}{=} \PY{n}{labels}\PY{p}{[}\PY{n}{permutation}\PY{p}{]}
+          \PY{k}{return} \PY{n}{shuffled\PYZus{}dataset}\PY{p}{,} \PY{n}{shuffled\PYZus{}labels}
+        \PY{n}{train\PYZus{}dataset}\PY{p}{,} \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{randomize}\PY{p}{(}\PY{n}{train\PYZus{}dataset}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{p}{)}
+        \PY{n}{test\PYZus{}dataset}\PY{p}{,} \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{randomize}\PY{p}{(}\PY{n}{test\PYZus{}dataset}\PY{p}{,} \PY{n}{test\PYZus{}labels}\PY{p}{)}
+        \PY{n}{valid\PYZus{}dataset}\PY{p}{,} \PY{n}{valid\PYZus{}labels} \PY{o}{=} \PY{n}{randomize}\PY{p}{(}\PY{n}{valid\PYZus{}dataset}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{pickle\PYZus{}file} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{notMNIST.pickle}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{pickle\PYZus{}file}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+          \PY{n}{save} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+          \PY{n}{train\PYZus{}dataset} \PY{o}{=} \PY{n}{save}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train\PYZus{}dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{save}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train\PYZus{}labels}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{valid\PYZus{}dataset} \PY{o}{=} \PY{n}{save}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{valid\PYZus{}dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{valid\PYZus{}labels} \PY{o}{=} \PY{n}{save}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{valid\PYZus{}labels}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{test\PYZus{}dataset} \PY{o}{=} \PY{n}{save}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test\PYZus{}dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{save}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test\PYZus{}labels}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{save}  \PY{c+c1}{\PYZsh{} hint to help gc free up memory}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{train\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Validation set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{valid\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{test\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Training set (200000, 28, 28) (200000,)
+Validation set (10000, 28, 28) (10000,)
+Test set (10000, 28, 28) (10000,)
+
+    \end{Verbatim}
+
+    Reformat into a TensorFlow-friendly shape: - convolutions need the image
+data formatted as a cube (width by height by \#channels) - labels as
+float 1-hot encodings.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{image\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{28}
+        \PY{n}{num\PYZus{}labels} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{num\PYZus{}channels} \PY{o}{=} \PY{l+m+mi}{1} \PY{c+c1}{\PYZsh{} grayscale}
+        
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        \PY{k}{def} \PY{n+nf}{reformat}\PY{p}{(}\PY{n}{dataset}\PY{p}{,} \PY{n}{labels}\PY{p}{)}\PY{p}{:}
+          \PY{n}{dataset} \PY{o}{=} \PY{n}{dataset}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}
+            \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{,} \PY{n}{num\PYZus{}channels}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{float32}\PY{p}{)}
+          \PY{n}{labels} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{num\PYZus{}labels}\PY{p}{)} \PY{o}{==} \PY{n}{labels}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{k+kc}{None}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{float32}\PY{p}{)}
+          \PY{k}{return} \PY{n}{dataset}\PY{p}{,} \PY{n}{labels}
+        \PY{n}{train\PYZus{}dataset}\PY{p}{,} \PY{n}{train\PYZus{}labels} \PY{o}{=} \PY{n}{reformat}\PY{p}{(}\PY{n}{train\PYZus{}dataset}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{p}{)}
+        \PY{n}{valid\PYZus{}dataset}\PY{p}{,} \PY{n}{valid\PYZus{}labels} \PY{o}{=} \PY{n}{reformat}\PY{p}{(}\PY{n}{valid\PYZus{}dataset}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{p}{)}
+        \PY{n}{test\PYZus{}dataset}\PY{p}{,} \PY{n}{test\PYZus{}labels} \PY{o}{=} \PY{n}{reformat}\PY{p}{(}\PY{n}{test\PYZus{}dataset}\PY{p}{,} \PY{n}{test\PYZus{}labels}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{train\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Validation set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{valid\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test set}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{test\PYZus{}dataset}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{test\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Training set (200000, 28, 28, 1) (200000, 10)
+Validation set (10000, 28, 28, 1) (10000, 10)
+Test set (10000, 28, 28, 1) (10000, 10)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{accuracy}\PY{p}{(}\PY{n}{predictions}\PY{p}{,} \PY{n}{labels}\PY{p}{)}\PY{p}{:}
+          \PY{k}{return} \PY{p}{(}\PY{l+m+mf}{100.0} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{predictions}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{==} \PY{n}{np}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{labels}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                  \PY{o}{/} \PY{n}{predictions}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    building a small network with two convolutional layers, followed by one
+fully connected layer. Convolutional networks are more expensive
+computationally, so we'll limit its depth and number of fully connected
+nodes.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{batch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{16}
+        \PY{n}{patch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{5}
+        \PY{n}{depth} \PY{o}{=} \PY{l+m+mi}{16}
+        \PY{n}{num\PYZus{}hidden} \PY{o}{=} \PY{l+m+mi}{64}
+        
+        \PY{n}{graph} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Graph}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{with} \PY{n}{graph}\PY{o}{.}\PY{n}{as\PYZus{}default}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        
+          \PY{c+c1}{\PYZsh{} Input data.}
+          \PY{n}{tf\PYZus{}train\PYZus{}dataset} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}
+            \PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{n}{batch\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{,} \PY{n}{num\PYZus{}channels}\PY{p}{)}\PY{p}{)}
+          \PY{n}{tf\PYZus{}train\PYZus{}labels} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{n}{batch\PYZus{}size}\PY{p}{,} \PY{n}{num\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+          \PY{n}{tf\PYZus{}valid\PYZus{}dataset} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{n}{valid\PYZus{}dataset}\PY{p}{)}
+          \PY{n}{tf\PYZus{}test\PYZus{}dataset} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{n}{test\PYZus{}dataset}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Variables.}
+          \PY{n}{layer1\PYZus{}weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}
+              \PY{p}{[}\PY{n}{patch\PYZus{}size}\PY{p}{,} \PY{n}{patch\PYZus{}size}\PY{p}{,} \PY{n}{num\PYZus{}channels}\PY{p}{,} \PY{n}{depth}\PY{p}{]}\PY{p}{,} \PY{n}{stddev}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer1\PYZus{}biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{[}\PY{n}{depth}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer2\PYZus{}weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}
+              \PY{p}{[}\PY{n}{patch\PYZus{}size}\PY{p}{,} \PY{n}{patch\PYZus{}size}\PY{p}{,} \PY{n}{depth}\PY{p}{,} \PY{n}{depth}\PY{p}{]}\PY{p}{,} \PY{n}{stddev}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer2\PYZus{}biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{[}\PY{n}{depth}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer3\PYZus{}weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}
+              \PY{p}{[}\PY{n}{image\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{image\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{depth}\PY{p}{,} \PY{n}{num\PYZus{}hidden}\PY{p}{]}\PY{p}{,} \PY{n}{stddev}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer3\PYZus{}biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{[}\PY{n}{num\PYZus{}hidden}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer4\PYZus{}weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}
+              \PY{p}{[}\PY{n}{num\PYZus{}hidden}\PY{p}{,} \PY{n}{num\PYZus{}labels}\PY{p}{]}\PY{p}{,} \PY{n}{stddev}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer4\PYZus{}biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{[}\PY{n}{num\PYZus{}labels}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Model.}
+          \PY{k}{def} \PY{n+nf}{model}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+            \PY{n}{conv} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{conv2d}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{layer1\PYZus{}weights}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SAME}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{hidden} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n}{conv} \PY{o}{+} \PY{n}{layer1\PYZus{}biases}\PY{p}{)}
+            \PY{n}{conv} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{conv2d}\PY{p}{(}\PY{n}{hidden}\PY{p}{,} \PY{n}{layer2\PYZus{}weights}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SAME}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{hidden} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n}{conv} \PY{o}{+} \PY{n}{layer2\PYZus{}biases}\PY{p}{)}
+            \PY{n}{shape} \PY{o}{=} \PY{n}{hidden}\PY{o}{.}\PY{n}{get\PYZus{}shape}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{as\PYZus{}list}\PY{p}{(}\PY{p}{)}
+            \PY{n}{reshape} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{hidden}\PY{p}{,} \PY{p}{[}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{*} \PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+            \PY{n}{hidden} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{reshape}\PY{p}{,} \PY{n}{layer3\PYZus{}weights}\PY{p}{)} \PY{o}{+} \PY{n}{layer3\PYZus{}biases}\PY{p}{)}
+            \PY{k}{return} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{hidden}\PY{p}{,} \PY{n}{layer4\PYZus{}weights}\PY{p}{)} \PY{o}{+} \PY{n}{layer4\PYZus{}biases}
+          
+          \PY{c+c1}{\PYZsh{} Training computation.}
+          \PY{n}{logits} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n}{tf\PYZus{}train\PYZus{}dataset}\PY{p}{)}
+          \PY{n}{loss} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}
+            \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax\PYZus{}cross\PYZus{}entropy\PYZus{}with\PYZus{}logits}\PY{p}{(}\PY{n}{labels}\PY{o}{=}\PY{n}{tf\PYZus{}train\PYZus{}labels}\PY{p}{,} \PY{n}{logits}\PY{o}{=}\PY{n}{logits}\PY{p}{)}\PY{p}{)}
+            
+          \PY{c+c1}{\PYZsh{} Optimizer.}
+          \PY{n}{optimizer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{GradientDescentOptimizer}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{o}{.}\PY{n}{minimize}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Predictions for the training, validation, and test data.}
+          \PY{n}{train\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax}\PY{p}{(}\PY{n}{logits}\PY{p}{)}
+          \PY{n}{valid\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax}\PY{p}{(}\PY{n}{model}\PY{p}{(}\PY{n}{tf\PYZus{}valid\PYZus{}dataset}\PY{p}{)}\PY{p}{)}
+          \PY{n}{test\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax}\PY{p}{(}\PY{n}{model}\PY{p}{(}\PY{n}{tf\PYZus{}test\PYZus{}dataset}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{num\PYZus{}steps} \PY{o}{=} \PY{l+m+mi}{1001}
+        
+        \PY{k}{with} \PY{n}{tf}\PY{o}{.}\PY{n}{Session}\PY{p}{(}\PY{n}{graph}\PY{o}{=}\PY{n}{graph}\PY{p}{)} \PY{k}{as} \PY{n}{session}\PY{p}{:}
+          \PY{n}{tf}\PY{o}{.}\PY{n}{global\PYZus{}variables\PYZus{}initializer}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Initialized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{k}{for} \PY{n}{step} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}steps}\PY{p}{)}\PY{p}{:}
+            \PY{n}{offset} \PY{o}{=} \PY{p}{(}\PY{n}{step} \PY{o}{*} \PY{n}{batch\PYZus{}size}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{batch\PYZus{}size}\PY{p}{)}
+            \PY{n}{batch\PYZus{}data} \PY{o}{=} \PY{n}{train\PYZus{}dataset}\PY{p}{[}\PY{n}{offset}\PY{p}{:}\PY{p}{(}\PY{n}{offset} \PY{o}{+} \PY{n}{batch\PYZus{}size}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{batch\PYZus{}labels} \PY{o}{=} \PY{n}{train\PYZus{}labels}\PY{p}{[}\PY{n}{offset}\PY{p}{:}\PY{p}{(}\PY{n}{offset} \PY{o}{+} \PY{n}{batch\PYZus{}size}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{feed\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{tf\PYZus{}train\PYZus{}dataset} \PY{p}{:} \PY{n}{batch\PYZus{}data}\PY{p}{,} \PY{n}{tf\PYZus{}train\PYZus{}labels} \PY{p}{:} \PY{n}{batch\PYZus{}labels}\PY{p}{\PYZcb{}}
+            \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{l}\PY{p}{,} \PY{n}{predictions} \PY{o}{=} \PY{n}{session}\PY{o}{.}\PY{n}{run}\PY{p}{(}
+              \PY{p}{[}\PY{n}{optimizer}\PY{p}{,} \PY{n}{loss}\PY{p}{,} \PY{n}{train\PYZus{}prediction}\PY{p}{]}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{n}{feed\PYZus{}dict}\PY{p}{)}
+            \PY{k}{if} \PY{p}{(}\PY{n}{step} \PY{o}{\PYZpc{}} \PY{l+m+mi}{50} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Minibatch loss at step }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{step}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Minibatch accuracy: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{accuracy}\PY{p}{(}\PY{n}{predictions}\PY{p}{,} \PY{n}{batch\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Validation accuracy: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{accuracy}\PY{p}{(}
+                \PY{n}{valid\PYZus{}prediction}\PY{o}{.}\PY{n}{eval}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test accuracy: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{accuracy}\PY{p}{(}\PY{n}{test\PYZus{}prediction}\PY{o}{.}\PY{n}{eval}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{test\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Initialized
+Minibatch loss at step 0: 3.252700
+Minibatch accuracy: 0.0\%
+Validation accuracy: 9.9\%
+Minibatch loss at step 50: 1.850138
+Minibatch accuracy: 31.2\%
+Validation accuracy: 48.7\%
+Minibatch loss at step 100: 1.010035
+Minibatch accuracy: 62.5\%
+Validation accuracy: 64.9\%
+Minibatch loss at step 150: 1.289849
+Minibatch accuracy: 68.8\%
+Validation accuracy: 72.0\%
+Minibatch loss at step 200: 0.505446
+Minibatch accuracy: 81.2\%
+Validation accuracy: 75.6\%
+Minibatch loss at step 250: 1.345587
+Minibatch accuracy: 56.2\%
+Validation accuracy: 69.6\%
+Minibatch loss at step 300: 0.695081
+Minibatch accuracy: 75.0\%
+Validation accuracy: 77.0\%
+Minibatch loss at step 350: 0.638521
+Minibatch accuracy: 75.0\%
+Validation accuracy: 78.8\%
+Minibatch loss at step 400: 0.511915
+Minibatch accuracy: 81.2\%
+Validation accuracy: 78.8\%
+Minibatch loss at step 450: 0.779062
+Minibatch accuracy: 75.0\%
+Validation accuracy: 78.7\%
+Minibatch loss at step 500: 0.602857
+Minibatch accuracy: 81.2\%
+Validation accuracy: 78.8\%
+Minibatch loss at step 550: 1.071783
+Minibatch accuracy: 75.0\%
+Validation accuracy: 80.2\%
+Minibatch loss at step 600: 0.966325
+Minibatch accuracy: 56.2\%
+Validation accuracy: 80.5\%
+Minibatch loss at step 650: 0.564390
+Minibatch accuracy: 81.2\%
+Validation accuracy: 81.5\%
+Minibatch loss at step 700: 0.549062
+Minibatch accuracy: 81.2\%
+Validation accuracy: 81.0\%
+Minibatch loss at step 750: 0.473424
+Minibatch accuracy: 87.5\%
+Validation accuracy: 81.4\%
+Minibatch loss at step 800: 0.421251
+Minibatch accuracy: 87.5\%
+Validation accuracy: 80.3\%
+Minibatch loss at step 850: 0.261832
+Minibatch accuracy: 93.8\%
+Validation accuracy: 81.6\%
+Minibatch loss at step 900: 0.716957
+Minibatch accuracy: 68.8\%
+Validation accuracy: 82.2\%
+Minibatch loss at step 950: 0.280484
+Minibatch accuracy: 93.8\%
+Validation accuracy: 82.5\%
+Minibatch loss at step 1000: 0.360719
+Minibatch accuracy: 93.8\%
+Validation accuracy: 81.6\%
+Test accuracy: 88.5\%
+
+    \end{Verbatim}
+
+    The convolutional model above uses convolutions with stride 2 to reduce
+the dimensionality. Replacing the strides by a max pooling operation
+(\texttt{nn.max\_pool()}) of stride 2 and kernel size 2.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{batch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{16}
+        \PY{n}{patch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{5}
+        \PY{n}{depth} \PY{o}{=} \PY{l+m+mi}{16}
+        \PY{n}{num\PYZus{}hidden} \PY{o}{=} \PY{l+m+mi}{64}
+        
+        \PY{n}{graph} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Graph}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{with} \PY{n}{graph}\PY{o}{.}\PY{n}{as\PYZus{}default}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        
+          \PY{c+c1}{\PYZsh{} Input data.}
+          \PY{n}{tf\PYZus{}train\PYZus{}dataset} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}
+            \PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{n}{batch\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{,} \PY{n}{image\PYZus{}size}\PY{p}{,} \PY{n}{num\PYZus{}channels}\PY{p}{)}\PY{p}{)}
+          \PY{n}{tf\PYZus{}train\PYZus{}labels} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{(}\PY{n}{batch\PYZus{}size}\PY{p}{,} \PY{n}{num\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+          \PY{n}{tf\PYZus{}valid\PYZus{}dataset} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{n}{valid\PYZus{}dataset}\PY{p}{)}
+          \PY{n}{tf\PYZus{}test\PYZus{}dataset} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{n}{test\PYZus{}dataset}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Variables.}
+          \PY{n}{layer1\PYZus{}weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}
+              \PY{p}{[}\PY{n}{patch\PYZus{}size}\PY{p}{,} \PY{n}{patch\PYZus{}size}\PY{p}{,} \PY{n}{num\PYZus{}channels}\PY{p}{,} \PY{n}{depth}\PY{p}{]}\PY{p}{,} \PY{n}{stddev}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer1\PYZus{}biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{[}\PY{n}{depth}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer2\PYZus{}weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}
+              \PY{p}{[}\PY{n}{patch\PYZus{}size}\PY{p}{,} \PY{n}{patch\PYZus{}size}\PY{p}{,} \PY{n}{depth}\PY{p}{,} \PY{n}{depth}\PY{p}{]}\PY{p}{,} \PY{n}{stddev}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer2\PYZus{}biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{[}\PY{n}{depth}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer3\PYZus{}weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}
+              \PY{p}{[}\PY{n}{image\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{image\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{depth}\PY{p}{,} \PY{n}{num\PYZus{}hidden}\PY{p}{]}\PY{p}{,} \PY{n}{stddev}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer3\PYZus{}biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{[}\PY{n}{num\PYZus{}hidden}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer4\PYZus{}weights} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}
+              \PY{p}{[}\PY{n}{num\PYZus{}hidden}\PY{p}{,} \PY{n}{num\PYZus{}labels}\PY{p}{]}\PY{p}{,} \PY{n}{stddev}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{)}
+          \PY{n}{layer4\PYZus{}biases} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{shape}\PY{o}{=}\PY{p}{[}\PY{n}{num\PYZus{}labels}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Model.}
+          \PY{k}{def} \PY{n+nf}{model}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+            \PY{n}{conv1} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{conv2d}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{layer1\PYZus{}weights}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SAME}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{bias1} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n}{conv1} \PY{o}{+} \PY{n}{layer1\PYZus{}biases}\PY{p}{)}
+            \PY{n}{pool1} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{max\PYZus{}pool}\PY{p}{(}\PY{n}{bias1}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SAME}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{conv2} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{conv2d}\PY{p}{(}\PY{n}{pool1}\PY{p}{,} \PY{n}{layer2\PYZus{}weights}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SAME}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{bias2} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n}{conv2} \PY{o}{+} \PY{n}{layer2\PYZus{}biases}\PY{p}{)}
+            \PY{n}{pool2} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{max\PYZus{}pool}\PY{p}{(}\PY{n}{bias2}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{padding}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SAME}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{shape} \PY{o}{=} \PY{n}{pool2}\PY{o}{.}\PY{n}{get\PYZus{}shape}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{as\PYZus{}list}\PY{p}{(}\PY{p}{)}
+            \PY{n}{reshape} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{pool2}\PY{p}{,} \PY{p}{[}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{*} \PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+            \PY{n}{hidden} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{reshape}\PY{p}{,} \PY{n}{layer3\PYZus{}weights}\PY{p}{)} \PY{o}{+} \PY{n}{layer3\PYZus{}biases}\PY{p}{)}
+            \PY{k}{return} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{hidden}\PY{p}{,} \PY{n}{layer4\PYZus{}weights}\PY{p}{)} \PY{o}{+} \PY{n}{layer4\PYZus{}biases}
+        
+          \PY{c+c1}{\PYZsh{} Training computation.}
+          \PY{n}{logits} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n}{tf\PYZus{}train\PYZus{}dataset}\PY{p}{)}
+          \PY{n}{loss} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}
+            \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax\PYZus{}cross\PYZus{}entropy\PYZus{}with\PYZus{}logits}\PY{p}{(}\PY{n}{labels}\PY{o}{=}\PY{n}{tf\PYZus{}train\PYZus{}labels}\PY{p}{,} \PY{n}{logits}\PY{o}{=}\PY{n}{logits}\PY{p}{)}\PY{p}{)}
+            
+          \PY{c+c1}{\PYZsh{} Optimizer.}
+          \PY{n}{optimizer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{GradientDescentOptimizer}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{o}{.}\PY{n}{minimize}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Predictions for the training, validation, and test data.}
+          \PY{n}{train\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax}\PY{p}{(}\PY{n}{logits}\PY{p}{)}
+          \PY{n}{valid\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax}\PY{p}{(}\PY{n}{model}\PY{p}{(}\PY{n}{tf\PYZus{}valid\PYZus{}dataset}\PY{p}{)}\PY{p}{)}
+          \PY{n}{test\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax}\PY{p}{(}\PY{n}{model}\PY{p}{(}\PY{n}{tf\PYZus{}test\PYZus{}dataset}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{num\PYZus{}steps} \PY{o}{=} \PY{l+m+mi}{1001}
+        
+        \PY{k}{with} \PY{n}{tf}\PY{o}{.}\PY{n}{Session}\PY{p}{(}\PY{n}{graph}\PY{o}{=}\PY{n}{graph}\PY{p}{)} \PY{k}{as} \PY{n}{session}\PY{p}{:}
+          \PY{n}{tf}\PY{o}{.}\PY{n}{global\PYZus{}variables\PYZus{}initializer}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Initialized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{k}{for} \PY{n}{step} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}steps}\PY{p}{)}\PY{p}{:}
+            \PY{n}{offset} \PY{o}{=} \PY{p}{(}\PY{n}{step} \PY{o}{*} \PY{n}{batch\PYZus{}size}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{train\PYZus{}labels}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{batch\PYZus{}size}\PY{p}{)}
+            \PY{n}{batch\PYZus{}data} \PY{o}{=} \PY{n}{train\PYZus{}dataset}\PY{p}{[}\PY{n}{offset}\PY{p}{:}\PY{p}{(}\PY{n}{offset} \PY{o}{+} \PY{n}{batch\PYZus{}size}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{batch\PYZus{}labels} \PY{o}{=} \PY{n}{train\PYZus{}labels}\PY{p}{[}\PY{n}{offset}\PY{p}{:}\PY{p}{(}\PY{n}{offset} \PY{o}{+} \PY{n}{batch\PYZus{}size}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+            \PY{n}{feed\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{tf\PYZus{}train\PYZus{}dataset} \PY{p}{:} \PY{n}{batch\PYZus{}data}\PY{p}{,} \PY{n}{tf\PYZus{}train\PYZus{}labels} \PY{p}{:} \PY{n}{batch\PYZus{}labels}\PY{p}{\PYZcb{}}
+            \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{l}\PY{p}{,} \PY{n}{predictions} \PY{o}{=} \PY{n}{session}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{p}{[}\PY{n}{optimizer}\PY{p}{,} \PY{n}{loss}\PY{p}{,} \PY{n}{train\PYZus{}prediction}\PY{p}{]}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{n}{feed\PYZus{}dict}\PY{p}{)}
+            \PY{k}{if} \PY{p}{(}\PY{n}{step} \PY{o}{\PYZpc{}} \PY{l+m+mi}{50} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Minibatch loss at step }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{step}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Minibatch accuracy: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{accuracy}\PY{p}{(}\PY{n}{predictions}\PY{p}{,} \PY{n}{batch\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Validation accuracy: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{accuracy}\PY{p}{(}
+                \PY{n}{valid\PYZus{}prediction}\PY{o}{.}\PY{n}{eval}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{valid\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test accuracy: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{accuracy}\PY{p}{(}\PY{n}{test\PYZus{}prediction}\PY{o}{.}\PY{n}{eval}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{test\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Initialized
+Minibatch loss at step 0: 3.045946
+Minibatch accuracy: 12.5\%
+Validation accuracy: 10.0\%
+Minibatch loss at step 50: 1.833991
+Minibatch accuracy: 31.2\%
+Validation accuracy: 46.6\%
+Minibatch loss at step 100: 1.044222
+Minibatch accuracy: 56.2\%
+Validation accuracy: 62.4\%
+Minibatch loss at step 150: 1.086824
+Minibatch accuracy: 68.8\%
+Validation accuracy: 70.6\%
+Minibatch loss at step 200: 0.626718
+Minibatch accuracy: 81.2\%
+Validation accuracy: 73.7\%
+Minibatch loss at step 250: 1.310024
+Minibatch accuracy: 62.5\%
+Validation accuracy: 74.4\%
+Minibatch loss at step 300: 0.477789
+Minibatch accuracy: 75.0\%
+Validation accuracy: 77.4\%
+Minibatch loss at step 350: 0.495264
+Minibatch accuracy: 81.2\%
+Validation accuracy: 79.5\%
+Minibatch loss at step 400: 0.597861
+Minibatch accuracy: 75.0\%
+Validation accuracy: 79.2\%
+Minibatch loss at step 450: 0.637514
+Minibatch accuracy: 81.2\%
+Validation accuracy: 80.6\%
+Minibatch loss at step 500: 0.441908
+Minibatch accuracy: 87.5\%
+Validation accuracy: 80.2\%
+Minibatch loss at step 550: 0.707909
+Minibatch accuracy: 75.0\%
+Validation accuracy: 81.6\%
+Minibatch loss at step 600: 1.103696
+Minibatch accuracy: 75.0\%
+Validation accuracy: 82.0\%
+Minibatch loss at step 650: 0.399387
+Minibatch accuracy: 87.5\%
+Validation accuracy: 83.0\%
+Minibatch loss at step 700: 0.450146
+Minibatch accuracy: 87.5\%
+Validation accuracy: 82.2\%
+Minibatch loss at step 750: 0.412422
+Minibatch accuracy: 87.5\%
+Validation accuracy: 82.6\%
+Minibatch loss at step 800: 0.354055
+Minibatch accuracy: 87.5\%
+Validation accuracy: 83.0\%
+Minibatch loss at step 850: 0.240893
+Minibatch accuracy: 93.8\%
+Validation accuracy: 83.3\%
+Minibatch loss at step 900: 0.460379
+Minibatch accuracy: 93.8\%
+Validation accuracy: 83.8\%
+Minibatch loss at step 950: 0.301897
+Minibatch accuracy: 87.5\%
+Validation accuracy: 84.6\%
+Minibatch loss at step 1000: 0.424297
+Minibatch accuracy: 87.5\%
+Validation accuracy: 83.5\%
+Test accuracy: 89.8\%
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
